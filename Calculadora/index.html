@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+            <main class="">
+                <div class="calculadora">
+                    <input type="text" id="visor" class="form-control" readonly>
+                    <div class="row mt-3"> <!-- 1° fileira de botões-->
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('7')">
+                                <h1>
+                                    7
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('8')">
+                                <h1>
+                                    8
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('9')" id="btn9">
+                                <h1>
+                                    9
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn operadores" onclick="definirOperador('+')">
+                                <h1>
+                                    +
+                                </h1>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row"><!--2° Fileira de botões-->
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('4')">
+                                <h1>
+                                    4
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('5')">
+                                <h1>
+                                    5
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('6')">
+                                <h1>
+                                    6
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn operadores" onclick="definirOperador('*')">
+                                <h1>
+                                    *
+                                </h1>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row"><!--3° fileira de botões-->
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('1')">
+                                <h1>
+                                    1
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('2')">
+                                <h1>
+                                    2
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="AdicionarNumero('3')">
+                                <h1>
+                                    3
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn operadores"onclick="definirOperador('/')">
+                                <h1>
+                                    /
+                                </h1>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 text-center"  style="background-color: orange; border-radius:10px ;">
+                            <button type="button" class="btn" onclick="AdicionarNumero('0')">
+                                <h1 class="">
+                                    0
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3 text-center">
+                            <button type="button" class="btn" onclick="definirOperador('!')">
+                                <h1>
+                                    !
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn" onclick="igual()">
+                                <h1>
+                                    =
+                                </h1>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn operadores" onclick="definirOperador('-')">
+                                <h1>
+                                    -
+                                </h1>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+    </div>
+    <script src="index.js"></script>
+    <!-- developer - @joaospw -->
+</body>
+</html>
