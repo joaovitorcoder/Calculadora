@@ -1,38 +1,29 @@
-
-function fatorial(n){
-    let fat = 1
-    for(let c = n; c > 1; c--){
-         fat *= c
-    }
-    return fat
-}
 //!Functions de operadores aritméticos
-function somar(a, b) {
-    return a + b
-}
+const fatorial = n => (n <= 1 ? 1 : n * fatorial(n - 1))
 
-function multiplicar(a, b) {
-    return a * b
-}
+const somar = (a, b) => a + b
 
-function dividir(a, b) {
-    return a / b
-}
+const multiplicar = (a, b) => a * b
 
-function subtracao(a, b) {
-    return a - b
-}
+const dividir = (a, b) => a / b
+
+const subtracao= (a, b) => a - b
+
 
 let visorAtual = ""
 let primeiroNumero = null
 let operador = null
 let resultadoMostrado = false
+let travarVisor = false
 
-//!Adiciona números ao visor, adiciona o número que vir com a chamada do código html
+//! Só vai adicionar numeros se o operador nao for fatorial
 function AdicionarNumero(num) {
-    visorAtual += num  //*Adiciona o número a váriavel que mais tarde sera atribuida ao visor
-    document.getElementById('visor').value = visorAtual
+    if(travarVisor === false){
+        visorAtual += num  //*Adiciona o número a váriavel que mais tarde sera atribuida ao visor
+        document.getElementById('visor').value = visorAtual
+    }
 }
+
 
 function apagar() {
     visorAtual = visorAtual.substring(0, visorAtual.length - 1) //*Pega o valor todo da variável com os números, menos o ultimo apagando-o
@@ -45,7 +36,7 @@ document.addEventListener("keydown", function (e) {
     if (e.key === "Backspace") {
         e.preventDefault() // evita apagar o input todo
         if(resultadoMostrado){
-            visorAtual = ""
+            visorAtual = "" 
             document.getElementById('visor').value = visorAtual
             resultadoMostrado = false
         }else{
@@ -80,14 +71,20 @@ document.addEventListener("keydown", function (e) {
 function definirOperador(op) {
     primeiroNumero = Number(visorAtual) //*A váriavel captura o primeiro número adicionado ao visor quando o operador for selecionado
     operador = op
-    visorAtual = "" //*Após a captura do primeiro número limpa a váriavel, que mais tarde limpará o visor
     document.getElementById('visor').value = visorAtual
+    if(op == '!'){
+        travarVisor = true
+        visorAtual += '!'
+        document.getElementById('visor').value = visorAtual
+    }else{
+        visorAtual = ""
+    }
 }
 
 function igual() {
     resultadoMostrado = true
     let resultado
-    let segundoNumero = Number(visorAtual)  //*A váriavel só capturara o segundo número quando o sinal de igual for clicado
+    let segundoNumero = Number(visorAtual) //*A váriavel só capturara o segundo número quando o sinal de igual for clicado
 
     //!Espera a "escolha" do operador aritmético que o usuário vai selecionar
     switch (operador) {
@@ -106,18 +103,19 @@ function igual() {
             break
         case '!':
             resultado = fatorial(primeiroNumero)
+            visorAtual = resultado
+            document.getElementById('visor').value = `${primeiroNumero}! = ${resultado}`
             break
         default:
             resultado = "Erro"
     }
-    if(operador === '!'){
-        resultado = fatorial(primeiroNumero)
+
+    //Só vai executar se o operador nao for o fatorial
+    if(operador != '!'){
         visorAtual = resultado
-        document.getElementById('visor').value = `${primeiroNumero}! = ${resultado}`
-    }else{
-        visorAtual = resultado //!A váriavel retém o resultado para continuar a conta
-    document.getElementById('visor').value = `${primeiroNumero} ${operador} ${segundoNumero} = ${resultado}`//*Exibe no visor a conta completa
+        document.getElementById('visor').value = `${primeiroNumero} ${operador} ${segundoNumero} = ${resultado}`//*Exibe no visor a conta completa
     }
 }
+
 
 // developer - @joaospw
