@@ -15,7 +15,7 @@ body {
 }
 
 .calculadora{
-    background: rgba(54, 54, 54, 0.525);
+    background: rgba(229, 225, 225, 0.525);
     backdrop-filter: blur(20px);
     padding: 50px;
     border-radius: 20px;
@@ -30,7 +30,7 @@ body {
 }
 
 .btn{
-    color: white;
+    color: rgba(0, 0, 0, 0.789);
 }
 
 .operadores{

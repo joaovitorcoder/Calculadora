@@ -11,14 +11,16 @@ const subtracao= (a, b) => a - b
 
 
 let visorAtual = ""
-let primeiroNumero = null
+let primeiroNumero = 0
 let operador = null
 let resultadoMostrado = false
 let travarVisor = false
 
-//! Só vai adicionar numeros se o operador nao for fatorial
+document.getElementById('visor').value = primeiroNumero
+
+//! Só vai adicionar o segundo numero se o operador nao for fatorial
 function AdicionarNumero(num) {
-    if(travarVisor === false){
+    if(!travarVisor){
         visorAtual += num  //*Adiciona o número a váriavel que mais tarde sera atribuida ao visor
         document.getElementById('visor').value = visorAtual
     }
@@ -71,14 +73,21 @@ document.addEventListener("keydown", function (e) {
 function definirOperador(op) {
     primeiroNumero = Number(visorAtual) //*A váriavel captura o primeiro número adicionado ao visor quando o operador for selecionado
     operador = op
-    document.getElementById('visor').value = visorAtual
+    
     if(op == '!'){
         travarVisor = true
         visorAtual += '!'
-        document.getElementById('visor').value = visorAtual
     }else{
         visorAtual = ""
     }
+
+    if(!primeiroNumero && operador == '-'){
+        visorAtual += '-'
+    }else if(!primeiroNumero && operador == '+'){
+        visorAtual += '+'
+    }
+
+    document.getElementById('visor').value = visorAtual
 }
 
 function igual() {
