@@ -2,7 +2,8 @@
 body {
     height: 100vh;
     margin: 0;
-    animation: cores 10s infinite alternate;
+    /*animation: cores 10s infinite alternate;*/
+    background-color: #000000;
     background-size: 800% 800%;
 }
 

@@ -35,12 +35,12 @@ function apagar() {
 //*Adiciona um "ouvinte" para capturar quando qualquer tecla do teclado for pressionada
 document.addEventListener("keydown", function (e) {
     //*Verifica se a tecla pressionada é Backspace
-    if (e.key === "Backspace") {
+    if (e.key === "Backspace" || e.key == 'Escape') {
         e.preventDefault() // evita apagar o input todo
         if(resultadoMostrado){
             visorAtual = "" 
             document.getElementById('visor').value = visorAtual
-            resultadoMostrado = false
+            resultadoMostrado = !resultadoMostrado
         }else{
             apagar()
         }
@@ -51,7 +51,7 @@ document.addEventListener("keydown", function (e) {
     if (!isNaN(e.key) && e.key !== " ") {
         //! Chama a função adicionarNumero passando o número digitado
         AdicionarNumero(e.key)
-        resultadoMostrado = false
+        resultadoMostrado = !resultadoMostrado
         return
     }
 
@@ -64,7 +64,7 @@ document.addEventListener("keydown", function (e) {
 
     if(["+", "-", "*", "/", "!"].includes(e.key)){
         definirOperador(e.key)
-        resultadoMostrado = false
+        resultadoMostrado = !resultadoMostrado
         return
     }
 
@@ -77,6 +77,7 @@ function definirOperador(op) {
     if(op == '!'){
         travarVisor = true
         visorAtual += '!'
+        
     }else{
         visorAtual = ""
     }
@@ -85,6 +86,10 @@ function definirOperador(op) {
         visorAtual += '-'
     }else if(!primeiroNumero && operador == '+'){
         visorAtual += '+'
+    }
+
+    if(resultadoMostrado){
+        travarVisor = !travarVisor
     }
 
     document.getElementById('visor').value = visorAtual
@@ -108,7 +113,12 @@ function igual() {
             resultado = dividir(primeiroNumero, segundoNumero)
             break
         case '-':
-            resultado = subtracao(primeiroNumero, segundoNumero)
+            if(!primeiroNumero && segundoNumero < 0){
+                resultado = somar(0, segundoNumero)
+                operador = '+'
+            }else{
+                resultado = subtracao(primeiroNumero, segundoNumero)
+            }
             break
         case '!':
             resultado = fatorial(primeiroNumero)
