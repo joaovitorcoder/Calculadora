@@ -105,7 +105,7 @@ function igual() {
         //!Chamada das funções para cada caso
         case '+':
             resultado = somar(primeiroNumero, segundoNumero)
-            break
+            break            
         case '*':
             resultado = multiplicar(primeiroNumero, segundoNumero)
             break
@@ -128,6 +128,8 @@ function igual() {
         default:
             resultado = "Erro"
     }
+
+    travarVisor = false
 
     //Só vai executar se o operador nao for o fatorial
     if(operador != '!'){
